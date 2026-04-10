@@ -1,3 +1,3 @@
 export default function LandingPage() {
-  return <div>Welcome!</div>;
+  return <h1 data-testid="title">Welcome!</h1>;
 }
