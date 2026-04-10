@@ -1,7 +1,12 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "tags": ["-lintignore"],
-  "ignore": ["commitlint.config.mjs", "postcss.config.mjs"],
+  "ignore": [
+    "commitlint.config.mjs",
+    "postcss.config.mjs",
+    "src/ui/components/ui/**",
+    "src/ui/helpers/**"
+  ],
   "ignoreBinaries": ["gitleaks"],
   "ignoreDependencies": ["@commitlint/config-conventional", "cross-env"]
 }
