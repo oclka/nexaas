@@ -1,0 +1,18 @@
+{
+  "components": {
+    "themeToggle": {
+      "toggleDark": "Toggle dark mode",
+      "toggleLight": "Toggle light mode"
+    }
+  },
+  "meta": {
+    "baseline": "The ultimate SaaS foundation",
+    "description": "A production-ready SaaS boilerplate built for high performance and rapid prototyping in Next.js 16.",
+    "keywords": "nextjs, saas, boilerplate, typescript, tailwindcss, drizzle, auth, stripe, vercel"
+  },
+  "pages": {
+    "landing": {
+      "title": "Welcome!"
+    }
+  }
+}

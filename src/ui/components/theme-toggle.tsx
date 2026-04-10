@@ -2,6 +2,7 @@
 
 import { Moon02Icon, Sun02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { ComponentProps, useSyncExternalStore } from 'react';
 
@@ -24,6 +25,8 @@ export default function ThemeToggle({
     getSnapshot,
     getServerSnapshot,
   );
+  const t = useTranslations('components.themeToggle');
+
   const isDark = mounted && theme === 'dark';
 
   return (
@@ -35,7 +38,7 @@ export default function ThemeToggle({
         mounted &&
         setTheme((previous) => (previous === 'dark' ? 'light' : 'dark'))
       }
-      aria-label={isDark ? 'Toggle light' : 'Toggle dark'}
+      aria-label={isDark ? t('toggleLight') : t('toggleDark')}
     >
       <HugeiconsIcon
         icon={Moon02Icon}

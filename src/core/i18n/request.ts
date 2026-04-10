@@ -1,0 +1,17 @@
+import { getRequestConfig } from 'next-intl/server';
+
+import { routing } from '@/core/i18n/routing';
+
+export default getRequestConfig(async ({ requestLocale }) => {
+  const requested = await requestLocale;
+  const locale =
+    requested && (routing.locales as readonly string[]).includes(requested)
+      ? requested
+      : routing.defaultLocale;
+
+  return {
+    locale,
+    // eslint-disable-next-line unicorn/no-await-expression-member
+    messages: (await import(`../../../messages/${locale}.json`)).default,
+  };
+});
