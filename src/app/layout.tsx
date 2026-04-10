@@ -1,7 +1,9 @@
-import type { Metadata } from 'next';
 import '@/ui/globals.css';
-import { inter } from '@/ui/fonts';
+
+import type { Metadata } from 'next';
+
 import { app } from '@/core/config';
+import { inter } from '@/ui/fonts';
 
 export const metadata: Metadata = {
   title: app.name,

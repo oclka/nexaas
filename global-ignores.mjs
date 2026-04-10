@@ -1,0 +1,18 @@
+export const GLOBAL_IGNORES = [
+  '.agent/**',
+  '.docker/**',
+  '.docs/**',
+  '.next/**',
+  '.stryker-tmp/**',
+  '.windsurf/**',
+  'coverage/**',
+  'logs/**',
+  'node_modules/**',
+  'playwright-report/**',
+  'reports/**',
+  'test-results/**',
+  'next-env.d.ts',
+  'commitlint.config.mjs',
+  'playwright.config.mjs',
+  'stryker.config.mjs',
+];
