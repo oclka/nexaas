@@ -1,7 +1,8 @@
+import { withIntl } from '@/core/i18n/middlewares/with-intl';
 import { chain } from '@/core/middlewares/chain';
 import { CustomMiddleware } from '@/core/middlewares/types';
 
-const proxies: CustomMiddleware[] = [];
+const proxies: CustomMiddleware[] = [withIntl];
 
 export const proxy = chain(proxies);
 

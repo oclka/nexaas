@@ -1,0 +1,18 @@
+{
+  "components": {
+    "themeToggle": {
+      "toggleDark": "Basculer en mode sombre",
+      "toggleLight": "Basculer en mode clair"
+    }
+  },
+  "meta": {
+    "baseline": "La fondation SaaS ultime",
+    "description": "Un socle SaaS prêt pour la production, conçu pour la haute performance et le prototypage rapide avec Next.js 16.",
+    "keywords": "nextjs, saas, boilerplate, typescript, tailwindcss, drizzle, auth, stripe, vercel"
+  },
+  "pages": {
+    "landing": {
+      "title": "Bienvenue !"
+    }
+  }
+}

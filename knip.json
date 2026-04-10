@@ -4,6 +4,8 @@
   "ignore": [
     "commitlint.config.mjs",
     "postcss.config.mjs",
+    "src/core/i18n/navigation.ts",
+    "src/core/i18n/request.ts",
     "src/ui/components/ui/**",
     "src/ui/helpers/**"
   ],
