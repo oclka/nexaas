@@ -26,7 +26,8 @@
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "knip": "knip"
   },
   "dependencies": {
     "next": "16.2.3",
@@ -47,6 +48,7 @@
     "eslint-plugin-sonarjs": "^4.0.2",
     "eslint-plugin-tsdoc": "^0.5.2",
     "eslint-plugin-unicorn": "^64.0.0",
+    "knip": "^6.3.1",
     "prettier": "^3.8.2",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
