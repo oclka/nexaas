@@ -1,5 +1,11 @@
 # nexaas
 
+## 0.3.0
+
+### Minor Changes
+
+- 6d92253: This PR establishes the UI foundations, including theme support and shadcn/ui integration. Prepared for version `0.3.0`.
+
 ## 0.2.0
 
 ### Minor Changes
