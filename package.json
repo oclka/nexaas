@@ -2,6 +2,24 @@
   "name": "nexaas",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "description": "A scalable, production-ready SaaS boilerplate built for high performance and rapid prototyping in Next.js 16.",
+  "author": {
+    "name": "OCLKA",
+    "email": "bonjour@oclka.dev",
+    "url": "https://oclka.dev"
+  },
+  "keywords": [
+    "nextjs",
+    "saas",
+    "boilerplate",
+    "typescript",
+    "tailwindcss",
+    "drizzle",
+    "auth",
+    "stripe",
+    "vercel"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,5 +41,6 @@
     "eslint-config-next": "16.2.3",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "packageManager": "pnpm@10.30.3"
 }
