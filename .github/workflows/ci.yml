@@ -1,0 +1,301 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  HUSKY: 0
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  setup:
+    name: 📦 Setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      pnpm-version: ${{ steps.pnpm-version.outputs.version }}
+      src: ${{ steps.filter.outputs.src }}
+      deps: ${{ steps.filter.outputs.deps }}
+      config: ${{ steps.filter.outputs.config }}
+      tests: ${{ steps.filter.outputs.tests }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 📌 Get pnpm version
+        id: pnpm-version
+        run: echo "version=$(jq -r '.packageManager' package.json | cut -d'@' -f2)" >> $GITHUB_OUTPUT
+
+      - name: 🔍 Detect changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            deps:
+              - 'package.json'
+              - 'pnpm-lock.yaml'
+            src:
+              - 'src/**/*.ts'
+              - 'src/**/*.js'
+              - 'src/**/*.tsx'
+              - 'src/**/*.jsx'
+            tests:
+              - 'src/**/*.spec.ts'
+              - 'src/**/*.test.ts'
+              - 'src/**/__tests__/**'
+            config:
+              - '*.config.*'
+              - 'tsconfig.json'
+              - '.*rc*'
+              - '.eslintignore'
+              - '.prettierignore'
+              - '*.json'
+              - '*.mjs'
+
+  commitlint:
+    name: 🚩 Commitlint
+    runs-on: ubuntu-latest
+    needs: setup
+    if: github.event_name == 'pull_request'
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Setup
+        uses: ./.github/actions/setup
+        with:
+          pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+
+      - name: 🚩 Validate commits
+        run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+  security-scan:
+    name: 🛡️ Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 🛡️ Gitleaks Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  lint:
+    name: 👕 Lint
+    runs-on: ubuntu-latest
+    needs: setup
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔧 Setup
+        uses: ./.github/actions/setup
+        with:
+          pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+
+      - name: 👕 Restore ESLint cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .eslintcache
+          key: eslint-${{ runner.os }}-${{ hashFiles('eslint.config.mjs') }}-${{ hashFiles('src/**/*.ts') }}
+          restore-keys: |
+            eslint-${{ runner.os }}-${{ hashFiles('eslint.config.mjs') }}-
+
+      - name: 👕 Run ESLint
+        run: pnpm lint --cache --cache-location .eslintcache
+
+      - name: 💾 Save ESLint cache
+        if: always() && hashFiles('.eslintcache') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .eslintcache
+          key: eslint-${{ runner.os }}-${{ hashFiles('eslint.config.mjs') }}-${{ hashFiles('src/**/*.ts') }}
+
+  knip:
+    name: ✂️ Knip
+    runs-on: ubuntu-latest
+    needs: setup
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔧 Setup
+        uses: ./.github/actions/setup
+        with:
+          pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+      - name: ✂️ Run Knip
+        run: pnpm knip
+
+  typecheck:
+    name: 📋 Type Check
+    runs-on: ubuntu-latest
+    needs: setup
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔧 Setup
+        uses: ./.github/actions/setup
+        with:
+          pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+
+      - name: 💾 Restore TypeScript cache
+        uses: actions/cache/restore@v4
+        with:
+          path: tsbuildinfo.json
+          key: ts-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'src/**/*.ts') }}
+
+      - name: 📋 Type Check
+        run: pnpm check:types
+
+      - name: 💾 Save TypeScript cache
+        if: always() && hashFiles('tsbuildinfo.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: tsbuildinfo.json
+          key: ts-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'src/**/*.ts') }}
+
+  build:
+    name: 🏗️ Build
+    runs-on: ubuntu-latest
+    needs: setup
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔧 Setup
+        uses: ./.github/actions/setup
+        with:
+          pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+
+      - name: 🏗️ Build
+        run: pnpm build
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_URL: ${{ secrets.SENTRY_URL }}
+
+      - name: 📤 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: .next/
+          retention-days: 1
+
+  audit:
+    name: 🛡️ Security Audit
+    runs-on: ubuntu-latest
+    needs: setup
+    timeout-minutes: 5
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔧 Setup
+        uses: ./.github/actions/setup
+        with:
+          pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+      - name: 🛡️ Run audit
+        run: pnpm audit --audit-level=high
+
+  tests:
+    name: 🧪 Tests
+    runs-on: ubuntu-latest
+    needs: setup
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔧 Setup
+        uses: ./.github/actions/setup
+        with:
+          pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+      - name: 🧪 Run tests
+        run: pnpm test:coverage
+        env:
+          NODE_ENV: test
+      - name: 📤 Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 7
+
+  # sonarqube:
+  #   name: 🦇 SonarQube
+  #   runs-on: ubuntu-latest
+  #   needs: [setup, tests]
+  #   timeout-minutes: 10
+  #   continue-on-error: true
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: 📥 Download coverage
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: coverage
+  #         path: coverage/
+  #     - name: 💾 Cache SonarQube packages
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.sonar/cache
+  #         key: sonar-${{ runner.os }}-cache
+  #         restore-keys: sonar-${{ runner.os }}-
+  #     - name: 🦇 SonarQube Scan
+  #       uses: SonarSource/sonarqube-scan-action@v6
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  mutation-testing:
+    name: 👽 Mutation Testing
+    needs: [setup, tests, build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔧 Setup
+        uses: ./.github/actions/setup
+        with:
+          pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+      - name: 💾 Cache Stryker
+        uses: actions/cache@v4
+        with:
+          path: .stryker-tmp
+          key: stryker-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - name: 👽 Stryker Mutation
+        run: pnpm test:mutate
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+
+  # sentry-check:
+  #   name: 🎯 Sentry Check
+  #   runs-on: ubuntu-latest
+  #   needs: setup
+  #   timeout-minutes: 5
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: 🔧 Setup
+  #       uses: ./.github/actions/setup
+  #       with:
+  #         pnpm-version: ${{ needs.setup.outputs.pnpm-version }}
+  #     - name: 🎯 Verify Sentry Configuration
+  #       run: |
+  #         if [ -z "${{ secrets.SENTRY_AUTH_TOKEN }}" ]; then
+  #           echo "❌ SENTRY_AUTH_TOKEN is missing in GitHub Secrets"
+  #           exit 1
+  #         fi
+  #         echo "✅ SENTRY_AUTH_TOKEN is present"
+  #       env:
+  #         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

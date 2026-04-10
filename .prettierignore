@@ -1,0 +1,11 @@
+.agent/**
+.docs/**
+.next/**
+.stryker-tmp/**
+.windsurf/**
+coverage/**
+logs/**
+node_modules/**
+reports/**
+pnpm-lock.yaml
+next-env.d.ts

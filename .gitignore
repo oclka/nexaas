@@ -1,4 +1,25 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+logs.txt
+pr.md
+
+.agent
+.docs
+.ops
+.windsurf
+
+.stryker-tmp/
+playwright-report/
+reports/
+test-results/
+
+.vscode/*
+!.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+!.env.ci
 
 # dependencies
 /node_modules
@@ -30,12 +51,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Turborepo
+.turbo
+
+# Sentry Config File
+.env.sentry-build-plugin

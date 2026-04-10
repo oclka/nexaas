@@ -2,26 +2,97 @@
   "name": "nexaas",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "description": "A scalable, production-ready SaaS boilerplate built for high performance and rapid prototyping in Next.js 16.",
+  "author": {
+    "name": "OCLKA",
+    "email": "bonjour@oclka.dev",
+    "url": "https://oclka.dev"
+  },
+  "keywords": [
+    "nextjs",
+    "saas",
+    "boilerplate",
+    "typescript",
+    "tailwindcss",
+    "drizzle",
+    "auth",
+    "stripe",
+    "vercel"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "test": "vitest run",
+    "test:watch": "vitest run --watch",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "pnpm exec playwright test",
+    "test:e2e:ui": "pnpm exec playwright test --ui",
+    "test:e2e:report": "pnpm exec playwright show-report",
+    "test:mutate": "stryker run",
+    "test:mutate:only": "pnpm exec stryker run --mutate",
+    "check:types": "tsc --noEmit",
+    "check:secrets": "if command -v gitleaks > /dev/null; then gitleaks protect --staged --verbose; else echo '⚠️ gitleaks is not installed locally. Skipping secret scan.'; fi",
+    "check:fast": "pnpm check:types && pnpm lint:fix && true",
+    "check:all": "pnpm check:types && pnpm lint:fix && pnpm check:secrets && pnpm audit --audit-level=high && pnpm test:coverage && pnpm build && true",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write .",
+    "knip": "knip",
+    "prepare": "husky",
+    "release": "changeset version"
   },
   "dependencies": {
     "next": "16.2.3",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.30.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@playwright/test": "^1.59.1",
+    "@stryker-mutator/api": "^9.6.0",
+    "@stryker-mutator/core": "^9.6.0",
+    "@stryker-mutator/typescript-checker": "^9.6.0",
+    "@stryker-mutator/vitest-runner": "^9.6.0",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^25.6.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/coverage-v8": "^4.1.4",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
+    "commitlint": "^20.5.0",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.2.0",
     "eslint-config-next": "16.2.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-simple-import-sort": "^13.0.0",
+    "eslint-plugin-sonarjs": "^4.0.2",
+    "eslint-plugin-tsdoc": "^0.5.2",
+    "eslint-plugin-unicorn": "^64.0.0",
+    "husky": "^9.1.7",
+    "jsdom": "^29.0.2",
+    "knip": "^6.3.1",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.2",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.1",
+    "vitest": "^4.1.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "packageManager": "pnpm@10.30.3"
 }
