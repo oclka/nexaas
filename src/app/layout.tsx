@@ -1,9 +1,13 @@
 import '@/ui/globals.css';
 
 import type { Metadata } from 'next';
+import { Geist } from "next/font/google";
 
 import { app } from '@/core/config';
+import { cn } from "@/lib/utils";
 import { inter } from '@/ui/fonts';
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: app.name,
@@ -19,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={cn("h-full", "antialiased", inter.variable, "font-sans", geist.variable)}>
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
