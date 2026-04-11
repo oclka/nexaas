@@ -1,4 +1,5 @@
 import '@/ui/globals.css';
+import '@/core/config/env';
 
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
@@ -39,7 +40,6 @@ interface Properties {
   children: ReactNode;
   params: Promise<{ locale: string }>;
 }
-
 
 export default async function RootLayout({
   children,
