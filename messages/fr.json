@@ -10,9 +10,62 @@
     "description": "Un socle SaaS prêt pour la production, conçu pour la haute performance et le prototypage rapide avec Next.js 16.",
     "keywords": "nextjs, saas, boilerplate, typescript, tailwindcss, drizzle, auth, stripe, vercel"
   },
+  "labels": {
+    "login": "Se connecter",
+    "signUp": "S'inscrire",
+    "backToHome": "Retour à l'accueil"
+  },
   "pages": {
+    "about": {
+      "title": "À propos"
+    },
+    "features": {
+      "title": "Fonctionnalités"
+    },
+    "blog": {
+      "title": "Blog"
+    },
+    "careers": {
+      "title": "Carrières"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "cookies": {
+      "title": "Cookies"
+    },
+    "customers": {
+      "title": "Clients"
+    },
+    "faq": {
+      "title": "FAQ"
+    },
+    "help": {
+      "title": "Aide"
+    },
     "landing": {
       "title": "Bienvenue !"
+    },
+    "licence": {
+      "title": "Licence"
+    },
+    "press": {
+      "title": "Presse"
+    },
+    "pricing": {
+      "title": "Tarifs"
+    },
+    "privacy": {
+      "title": "Confidentialité"
+    },
+    "security": {
+      "title": "Sécurité"
+    },
+    "solution": {
+      "title": "Solution"
+    },
+    "support": {
+      "title": "Support"
     }
   }
 }
