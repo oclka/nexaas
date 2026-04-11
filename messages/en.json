@@ -10,9 +10,62 @@
     "description": "A production-ready SaaS boilerplate built for high performance and rapid prototyping in Next.js 16.",
     "keywords": "nextjs, saas, boilerplate, typescript, tailwindcss, drizzle, auth, stripe, vercel"
   },
+  "labels": {
+    "login": "Login",
+    "signUp": "Sign up",
+    "backToHome": "Back to home"
+  },
   "pages": {
+    "about": {
+      "title": "About"
+    },
+    "features": {
+      "title": "Features"
+    },
+    "blog": {
+      "title": "Blog"
+    },
+    "careers": {
+      "title": "Careers"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "cookies": {
+      "title": "Cookies"
+    },
+    "customers": {
+      "title": "Customers"
+    },
+    "faq": {
+      "title": "FAQ"
+    },
+    "help": {
+      "title": "Help"
+    },
     "landing": {
       "title": "Welcome!"
+    },
+    "licence": {
+      "title": "License"
+    },
+    "press": {
+      "title": "Press"
+    },
+    "pricing": {
+      "title": "Pricing"
+    },
+    "privacy": {
+      "title": "Privacy"
+    },
+    "security": {
+      "title": "Security"
+    },
+    "solution": {
+      "title": "Solution"
+    },
+    "support": {
+      "title": "Support"
     }
   }
 }
