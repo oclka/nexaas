@@ -12,6 +12,8 @@
   },
   "iconLibrary": "lucide",
   "rtl": false,
+  "menuColor": "default",
+  "menuAccent": "subtle",
   "aliases": {
     "components": "@/ui/components",
     "utils": "@/ui/helpers",
@@ -19,7 +21,7 @@
     "lib": "@/ui/helpers",
     "hooks": "@/hooks"
   },
-  "menuColor": "default",
-  "menuAccent": "subtle",
-  "registries": {}
+  "registries": {
+    "@tailark": "https://tailark.com/r/{name}.json"
+  }
 }

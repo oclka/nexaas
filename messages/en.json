@@ -1,5 +1,17 @@
 {
   "components": {
+    "footer": {
+      "categories": {
+        "product": "Product",
+        "help": "Help",
+        "company": "Company",
+        "legal": "Legal"
+      },
+      "allRightsReserved": "All rights reserved"
+    },
+    "socialLinks": {
+      "label": "{app} on {social}"
+    },
     "themeToggle": {
       "toggleDark": "Toggle dark mode",
       "toggleLight": "Toggle light mode"
