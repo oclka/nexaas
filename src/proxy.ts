@@ -1,8 +1,9 @@
 import { withIntl } from '@/core/i18n/middlewares/with-intl';
 import { chain } from '@/core/middlewares/chain';
 import { CustomMiddleware } from '@/core/middlewares/types';
+import { withTraceId } from '@/core/observability/middlewares/with-trace-id';
 
-const proxies: CustomMiddleware[] = [withIntl];
+const proxies: CustomMiddleware[] = [withTraceId, withIntl];
 
 export const proxy = chain(proxies);
 
