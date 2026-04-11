@@ -26,8 +26,11 @@ export const env = createEnv({
       .string()
       .default(slugify(app.name, { lower: true, strict: true })),
 
-    // Security
+    // Cache (Vercel KV / Upstash)
     REDIS_URL: z.url().default('redis://localhost:6379'),
+    KV_URL: z.url().optional(),
+    KV_REST_API_URL: z.url().optional(),
+    KV_REST_API_TOKEN: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),

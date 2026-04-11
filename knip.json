@@ -4,11 +4,20 @@
   "ignore": [
     "commitlint.config.mjs",
     "postcss.config.mjs",
+    "src/core/lib/redis.ts",
+    "src/core/observability/logger.ts",
+    "src/core/observability/observability.ts",
     "src/core/i18n/navigation.ts",
     "src/core/i18n/request.ts",
     "src/ui/components/ui/**",
     "src/ui/helpers/**"
   ],
   "ignoreBinaries": ["gitleaks"],
-  "ignoreDependencies": ["@commitlint/config-conventional", "cross-env"]
+  "ignoreDependencies": [
+    "@commitlint/config-conventional",
+    "@upstash/redis",
+    "cross-env",
+    "pino-loki",
+    "pino-pretty"
+  ]
 }
