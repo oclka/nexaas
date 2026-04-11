@@ -1,5 +1,11 @@
 # nexaas
 
+## 0.7.0
+
+### Minor Changes
+
+- 629a1fc: This PR completes the landing page structure with a professional footer and form components. Bumping version to `0.7.0`.
+
 ## 0.6.0
 
 ### Minor Changes
