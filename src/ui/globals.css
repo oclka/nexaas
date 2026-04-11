@@ -186,3 +186,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .link {
+    @apply underline underline-offset-4;
+  }
+
+  .link-hover {
+    @apply underline-offset-4 transition-all duration-300 hover:underline;
+  }
+}

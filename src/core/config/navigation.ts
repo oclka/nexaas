@@ -1,19 +1,12 @@
-import {
-  Facebook02Icon,
-  InstagramIcon,
-  Linkedin02Icon,
-  NewTwitterIcon,
-  ThreadsIcon,
-  TiktokIcon,
-} from '@hugeicons/core-free-icons';
-
-interface NavigationCategory {
+export interface NavigationCategory {
   title: string;
-  items: {
-    title: string;
-    href: string;
-    order?: number;
-  }[];
+  items: NavigationItem[];
+}
+
+export interface NavigationItem {
+  title: string;
+  href: string;
+  order?: number;
 }
 
 export const navigation: NavigationCategory[] = [
@@ -104,38 +97,5 @@ export const navigation: NavigationCategory[] = [
         href: '#',
       },
     ],
-  },
-];
-
-export const socialLinks = [
-  {
-    name: 'X/Twitter',
-    icon: NewTwitterIcon,
-    href: '#',
-  },
-  {
-    name: 'Linkedin',
-    icon: Linkedin02Icon,
-    href: '#',
-  },
-  {
-    name: 'Facebook',
-    icon: Facebook02Icon,
-    href: '#',
-  },
-  {
-    name: 'Threads',
-    icon: ThreadsIcon,
-    href: '#',
-  },
-  {
-    name: 'Instagram',
-    icon: InstagramIcon,
-    href: '#',
-  },
-  {
-    name: 'Tiktok',
-    icon: TiktokIcon,
-    href: '#',
   },
 ];

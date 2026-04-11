@@ -4,7 +4,6 @@
   "ignore": [
     "commitlint.config.mjs",
     "postcss.config.mjs",
-    "src/core/config/navigation.config.ts",
     "src/core/lib/redis.ts",
     "src/core/observability/logger.ts",
     "src/core/observability/observability.ts",

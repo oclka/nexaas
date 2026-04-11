@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
-import { navigation } from '@/core/config/navigation.config';
+import { navigation } from '@/core/config/navigation';
 import LocaleSwitcher from '@/core/i18n/components/locale-switcher';
 import Logo from '@/ui/components/logo';
 import ThemeToggle from '@/ui/components/theme-toggle';
