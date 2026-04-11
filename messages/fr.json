@@ -1,13 +1,18 @@
 {
   "components": {
     "footer": {
+      "allRightsReserved": "Tous droits réservés",
       "categories": {
         "product": "Produit",
         "help": "Aide",
         "company": "Entreprise",
         "legal": "Légal"
       },
-      "allRightsReserved": "Tous droits réservés"
+      "newsletterForm": {
+        "button": "S'inscrire",
+        "description": "Ne manquez aucune mise à jour !",
+        "title": "Newsletter"
+      }
     },
     "socialLinks": {
       "label": "{app} sur {social}"
@@ -23,9 +28,9 @@
     "keywords": "nextjs, saas, boilerplate, typescript, tailwindcss, drizzle, auth, stripe, vercel"
   },
   "labels": {
+    "backToHome": "Retour à l'accueil",
     "login": "Se connecter",
-    "signUp": "S'inscrire",
-    "backToHome": "Retour à l'accueil"
+    "signUp": "S'inscrire"
   },
   "pages": {
     "about": {
@@ -79,5 +84,8 @@
     "support": {
       "title": "Support"
     }
+  },
+  "placeholders": {
+    "yourEmail": "Votre email"
   }
 }
