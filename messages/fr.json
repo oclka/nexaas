@@ -22,6 +22,17 @@
       "toggleLight": "Basculer en mode clair"
     }
   },
+  "emails": {
+    "newsletterConfirmation": {
+      "button": "Confirmer mon inscription",
+      "content": "Merci de vous être inscrit à notre newsletter ! Veuillez cliquer sur le bouton ci-dessous pour confirmer votre inscription.",
+      "disclaimer": "Si vous n'avez pas demandé cette inscription, vous pouvez ignorer cet email en toute sécurité.",
+      "footnote": "Si le bouton ci-dessus ne fonctionne pas, vous pouvez également copier et coller ce lien dans votre navigateur :",
+      "greeting": "Bonjour,",
+      "preview": "Confirmez votre inscription à la newsletter",
+      "title": "Confirmation d'inscription"
+    }
+  },
   "meta": {
     "baseline": "La fondation SaaS ultime",
     "description": "Un socle SaaS prêt pour la production, conçu pour la haute performance et le prototypage rapide avec Next.js 16.",

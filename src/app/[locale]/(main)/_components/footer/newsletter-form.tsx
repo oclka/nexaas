@@ -34,7 +34,7 @@ export default function NewsletterForm() {
             className="border-r-none h-8 rounded-r-none text-sm"
           />
           <PendingButton
-            className="border-l-none border-muted-foreground rounded-l-none border-1"
+            className="border-l-none border-muted-foreground dark:border-muted-foreground/50 rounded-l-none border-1"
             pending={isPending}
             pendingLabel={t('components.footer.newsletterForm.button')}
             pendingLabelClassName="md:hidden"
