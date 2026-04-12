@@ -1,5 +1,11 @@
 # nexaas
 
+## 0.8.0
+
+### Minor Changes
+
+- 7d7e059: This PR adds the foundational database infrastructure and persistence for the newsletter service. Bumping version to `0.8.0`.
+
 ## 0.7.0
 
 ### Minor Changes
