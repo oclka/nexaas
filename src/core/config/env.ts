@@ -31,6 +31,10 @@ export const env = createEnv({
     KV_URL: z.url().optional(),
     KV_REST_API_URL: z.url().optional(),
     KV_REST_API_TOKEN: z.string().optional(),
+
+    // Mailer
+    SMTP_URL: z.url({ protocol: /^smtps?/ }).optional(),
+    MAIL_FROM: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
