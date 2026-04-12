@@ -15,6 +15,7 @@
     "src/core/observability/logger.ts",
     "src/core/observability/observability.ts",
     "src/core/types/index.ts",
+    "src/domains/newsletter/emails/index.tsx",
     "src/ui/components/ui/**",
     "src/ui/helpers/**"
   ],
