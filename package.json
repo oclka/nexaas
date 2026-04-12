@@ -44,7 +44,8 @@
     "release": "changeset version",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "email:dev": "email dev"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.1.1",
@@ -66,7 +67,7 @@
     "drizzle-zod": "^0.8.3",
     "motion": "^12.38.0",
     "next": "16.2.3",
-    "next-intl": "^4.9.0",
+    "next-intl": "^4.9.1",
     "next-themes": "^0.4.6",
     "nodemailer": "^8.0.5",
     "pino": "^10.3.1",
@@ -86,10 +87,11 @@
     "@changesets/cli": "^2.30.0",
     "@commitlint/config-conventional": "^20.5.0",
     "@playwright/test": "^1.59.1",
-    "@stryker-mutator/api": "^9.6.0",
-    "@stryker-mutator/core": "^9.6.0",
-    "@stryker-mutator/typescript-checker": "^9.6.0",
-    "@stryker-mutator/vitest-runner": "^9.6.0",
+    "@react-email/preview-server": "^5.2.10",
+    "@stryker-mutator/api": "^9.6.1",
+    "@stryker-mutator/core": "^9.6.1",
+    "@stryker-mutator/typescript-checker": "^9.6.1",
+    "@stryker-mutator/vitest-runner": "^9.6.1",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -114,10 +116,11 @@
     "eslint-plugin-unicorn": "^64.0.0",
     "husky": "^9.1.7",
     "jsdom": "^29.0.2",
-    "knip": "^6.3.1",
+    "knip": "^6.4.0",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.2",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "react-email": "^5.2.10",
     "tailwindcss": "^4",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.1",
@@ -131,5 +134,11 @@
       "prettier --write"
     ]
   },
-  "packageManager": "pnpm@10.30.3"
+  "packageManager": "pnpm@10.30.3",
+  "pnpm": {
+    "overrides": {
+      "next": "16.2.3",
+      "esbuild": "0.25.0"
+    }
+  }
 }

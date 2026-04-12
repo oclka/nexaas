@@ -19,6 +19,7 @@
       }
     ],
     "paths": {
+      "@/emails/*": ["./emails/*"],
       "@/*": ["./src/*"]
     },
     "types": ["node", "vitest/globals", "@testing-library/jest-dom"]
