@@ -7,6 +7,7 @@ import {
   text,
   timestamp,
   uuid,
+  varchar,
 } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 
@@ -27,6 +28,7 @@ export const newslettersTable = pgTable(
     token: uuid('token').defaultRandom().unique(),
     tokenExpiresAt: timestamp('token_expires_at'),
     source: text('source'),
+    language: varchar('language', { length: 3 }).default('en'),
 
     subscribedAt: timestamp('subscribed_at').defaultNow().notNull(),
     unsubscribedAt: timestamp('unsubscribed_at'),
@@ -48,12 +50,13 @@ export const newsletterStatsTable = pgTable(
   {
     date: date('date').notNull(),
     source: text('source').notNull(),
+    language: varchar('language', { length: 3 }).notNull(),
 
     newSubs: integer('new_subs').default(0).notNull(),
     unsubs: integer('unsubs').default(0).notNull(),
     totalActive: integer('total_active_count').notNull(),
   },
-  (table) => [primaryKey({ columns: [table.date, table.source] })],
+  (table) => [primaryKey({ columns: [table.date, table.source, table.language] })],
 );
 
 // ─── Types ───────────────────────────────────────────────────────────────────

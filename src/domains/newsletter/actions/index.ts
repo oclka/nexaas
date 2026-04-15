@@ -22,8 +22,10 @@ import { NewsletterErrors } from '@/domains/newsletter/errors';
 export async function subscribeToNewsletter(
   email: string,
   source?: string,
+  language?: string,
 ): Promise<ActionResult> {
   try {
+    email = email.trim().toLowerCase();
     const schema = z.object({
       email: z.email(),
     });
@@ -45,14 +47,15 @@ export async function subscribeToNewsletter(
     const token = randomUUID();
     const tokenExpiresAt = addDays(now, 1);
     const baseUrl = await getBaseUrl();
-    const source_ = source || (await getRequestSource());
+    const { url, language: locale } = await getRequestSource();
 
     const registration: NewsletterInsert = {
       email,
       status: 'pending',
       token,
       tokenExpiresAt,
-      source: source_,
+      source: source || url,
+      language: language || locale,
       subscribedAt: now,
       verifiedAt: undefined,
       unsubscribedAt: undefined,
@@ -67,7 +70,8 @@ export async function subscribeToNewsletter(
           token,
           tokenExpiresAt,
           status: 'pending',
-          source: source_,
+          source: source || url,
+          language: language || locale,
           subscribedAt: now,
           unsubscribedAt: undefined,
           verifiedAt: undefined,
