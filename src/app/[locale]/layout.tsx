@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
+import { Toaster } from 'sonner';
 
 import { ThemeProvider } from '@/app/[locale]/_components/theme-provider';
 import { app } from '@/core/config';
@@ -59,6 +60,7 @@ export default async function RootLayout({
         <ThemeProvider>
           <NextIntlClientProvider messages={messages} locale={locale}>
             {children}
+            <Toaster richColors closeButton />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

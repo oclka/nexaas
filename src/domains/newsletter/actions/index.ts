@@ -19,10 +19,6 @@ import {
 import { sendNewsletterConfirmationEmail } from '@/domains/newsletter/emails';
 import { NewsletterErrors } from '@/domains/newsletter/errors';
 
-export const subscribeToNewsletterSchema = z.object({
-  email: z.email(),
-});
-
 export async function subscribeToNewsletter(
   email: string,
   source?: string,
@@ -31,7 +27,7 @@ export async function subscribeToNewsletter(
     const schema = z.object({
       email: z.email(),
     });
-    const result = schema.safeParse(email);
+    const result = schema.safeParse({ email });
     if (!result.success) {
       return ActionResponse.error(NewsletterErrors.InvalidEmail);
     }
@@ -86,6 +82,7 @@ export async function subscribeToNewsletter(
 
     return ActionResponse.success();
   } catch (error) {
+    console.log(error);
     logger.error({ email, err: error }, 'Failed to subscribe to newsletter');
     return ActionResponse.error(CoreErrors.ServerError);
   }
