@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@/emails/*": ["./emails/*"],
+      "@/seed/*": ["./seed/*"],
       "@/scripts/*": ["./scripts/*"],
       "@/*": ["./src/*"]
     },
