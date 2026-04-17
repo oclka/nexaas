@@ -262,6 +262,7 @@ jobs:
       - name: 👽 Stryker Mutation
         run: pnpm test:mutate
         env:
+          APP_SECRET: ${{ secrets.APP_SECRET }}
           STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
 
   # sentry-check:
