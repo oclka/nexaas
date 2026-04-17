@@ -3,6 +3,7 @@ import { subMonths } from 'date-fns';
 import { newslettersTable, newsletterStatsTable } from '@/domains/newsletter/db/schemas';
 import { ExecutableSeedTask } from '@/seed/types';
 
+import { seedNewsletterStats } from '../handlers/newsletter-stats.seed';
 import { seedNewsletterSubscriptions } from '../handlers/newsletter-subscriptions.seed';
 import { createSeedTask } from '../helpers/factory';
 
@@ -30,6 +31,10 @@ export const config: ExecutableSeedTask[] = [
       fromDate: subMonths(new Date(), 6),
     },
     singular: 'newsletter subscription',
+  }),
+  createSeedTask({
+    handler: seedNewsletterStats,
+    singular: 'newsletter stat',
   }),
 ];
 

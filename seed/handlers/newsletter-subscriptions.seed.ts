@@ -2,7 +2,7 @@ import { subMonths } from 'date-fns';
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
 import { NewsletterInsert, newslettersTable } from '@/domains/newsletter/db/schemas';
-import { generateNewsletterSubscriptions } from '@/scripts/generators/newsletter';
+import { generateNewsletterSubscriptions } from '@/scripts/generators/newsletter/newsletter-subscriptions';
 import { SeedError } from '@/seed/errors/seed-error';
 
 interface SeedNewsletterSubscriptionsOptions {
