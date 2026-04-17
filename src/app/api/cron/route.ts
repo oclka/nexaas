@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { env } from '@/core/config/env';
 import { logger } from '@/core/observability/logger';
 import { getErrorMessage } from '@/helpers';
 
 import { runNewsletterStatsJob } from './jobs/newsletter-stats';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 const JOBS = [
   { name: 'newsletter-stats', run: runNewsletterStatsJob },
@@ -14,7 +14,16 @@ const JOBS = [
 
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${env.APP_SECRET}`) {
+  const appSecret = process.env.APP_SECRET;
+
+  if (!appSecret) {
+    return NextResponse.json(
+      { error: 'Server misconfiguration' },
+      { status: 500 },
+    );
+  }
+
+  if (authHeader !== `Bearer ${appSecret}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
