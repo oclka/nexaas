@@ -129,6 +129,7 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "react-email": "^5.2.10",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.1",
     "vitest": "^4.1.4"
