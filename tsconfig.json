@@ -20,6 +20,8 @@
     ],
     "paths": {
       "@/emails/*": ["./emails/*"],
+      "@/seed/*": ["./seed/*"],
+      "@/scripts/*": ["./scripts/*"],
       "@/*": ["./src/*"]
     },
     "types": ["node", "vitest/globals", "@testing-library/jest-dom"]

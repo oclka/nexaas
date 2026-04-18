@@ -77,6 +77,14 @@ services:
       - app-network
     restart: unless-stopped
 
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: app-mailpit
+    ports:
+      - '2525:1025'
+      - '8025:8025'
+    restart: unless-stopped
+
 networks:
   app-network:
     name: app-network

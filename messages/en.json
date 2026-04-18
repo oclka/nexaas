@@ -8,11 +8,17 @@
         "company": "Company",
         "legal": "Legal"
       },
-      "newsletterForm": {
-        "button": "Subscribe",
-        "description": "Don't miss any update!",
-        "title": "Newsletter"
-      }
+      "socialLink": "{app} on {social}"
+    },
+    "newsletterForm": {
+      "confirm": {
+        "description": "An email has been sent to you to confirm your subscription, don't forget to validate it.",
+        "title": "Thank you for your interest!"
+      },
+      "label": "Newsletter",
+      "placeholder": "Your email",
+      "submit": "Subscribe",
+      "description": "Don't miss any updates!"
     },
     "socialLinks": {
       "label": "{app} on {social}"
@@ -39,6 +45,9 @@
       "preview": "Confirm your newsletter subscription",
       "title": "Newsletter Confirmation"
     }
+  },
+  "errors": {
+    "unexpected": "An unexpected error occurred. Please try again later or contact support if the problem persists."
   },
   "meta": {
     "baseline": "The ultimate SaaS foundation",
@@ -105,5 +114,8 @@
   },
   "placeholders": {
     "yourEmail": "Your email"
+  },
+  "validations": {
+    "email": "Please enter a valid email address."
   }
 }

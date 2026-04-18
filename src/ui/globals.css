@@ -196,3 +196,29 @@
     @apply underline-offset-4 transition-all duration-300 hover:underline;
   }
 }
+
+@layer utilities {
+  /* FORMS */
+  [data-slot='field-label'].required:after {
+    content: '*';
+    @apply text-destructive -ml-1.5;
+  }
+
+  [data-slot='field-label'].required.disabled:after {
+    content: '*';
+    @apply text-muted-foreground -ml-1.5;
+  }
+
+  [data-slot='field-label'].disabled {
+    @apply text-muted-foreground;
+  }
+
+  [data-slot='field-error'] {
+    @apply text-xs;
+  }
+
+  /* LINKS */
+  .link-hover {
+    @apply underline-offset-4 transition-all duration-200 hover:underline;
+  }
+}

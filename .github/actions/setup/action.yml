@@ -2,9 +2,6 @@ name: 'Setup Node.js and pnpm'
 description: 'Sets up Node.js, pnpm, and installs dependencies with caching'
 
 inputs:
-  pnpm-version:
-    description: 'Version of pnpm to install'
-    required: true
   install:
     description: 'Whether to run pnpm install'
     required: false
@@ -21,7 +18,6 @@ runs:
     - name: 🔧 Setup pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: ${{ inputs.pnpm-version }}
         run_install: false
 
     - name: 📝 Prepare environment variables

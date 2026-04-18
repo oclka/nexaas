@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
-import NewsletterForm from '@/app/[locale]/(main)/_components/footer/newsletter-form';
 import SocialLinks from '@/app/[locale]/(main)/_components/footer/social-links';
 import { navigation } from '@/core/config';
 import { oclka } from '@/core/config';
 import { NavigationCategory, NavigationItem } from '@/core/config/navigation';
 import LocaleSwitcher from '@/core/i18n/components/locale-switcher';
+import NewsletterForm from '@/domains/newsletter/components/newsletter-form';
 import Logo from '@/ui/components/logo';
 
 export default async function Footer() {
@@ -41,7 +41,7 @@ export default async function Footer() {
               </div>
             ))}
           </div>
-          <NewsletterForm />
+          <NewsletterForm className="row-start-1 border-b pb-8 text-sm md:col-span-2 md:border-none lg:col-span-1" />
         </div>
         <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
           <small className="text-muted-foreground order-last block text-center text-sm md:order-first">

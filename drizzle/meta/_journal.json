@@ -8,6 +8,13 @@
       "when": 1775951231076,
       "tag": "0000_purple_hobgoblin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1776244095538,
+      "tag": "0001_familiar_darwin",
+      "breakpoints": true
     }
   ]
 }
