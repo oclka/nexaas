@@ -37,7 +37,7 @@ export const env = createEnv({
     MAIL_FROM: z.string().optional(),
 
     // Security
-    APP_SECRET: z.string().min(32),
+    APP_SECRET: z.string().min(32).optional(),
   },
   client: {
     NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
