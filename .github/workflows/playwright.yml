@@ -39,10 +39,8 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v4
 
-      - name: � Setup Node.js and pnpm
+      - name: 🔧 Setup Node.js and pnpm
         uses: ./.github/actions/setup
-        with:
-          pnpm-version: '10.30.3'
 
       - name: 💾 Cache Playwright browsers
         id: playwright-cache
@@ -84,10 +82,8 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v4
 
-      - name: � Setup Node.js and pnpm
+      - name: 🔧 Setup Node.js and pnpm
         uses: ./.github/actions/setup
-        with:
-          pnpm-version: '10.30.3'
 
       - name: 📥 Download blob reports
         uses: actions/download-artifact@v4
