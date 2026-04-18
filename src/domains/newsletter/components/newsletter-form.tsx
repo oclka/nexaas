@@ -1,11 +1,10 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
 import { SentIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { useTranslations } from 'next-intl';
 import { useState, useTransition } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import { toast } from 'sonner';
 import z from 'zod';
 
@@ -19,6 +18,7 @@ import {
 } from '@/ui/components/ui/field';
 import { Input } from '@/ui/components/ui/input';
 import { cn } from '@/ui/helpers';
+import { useZodForm } from '@/ui/hooks/use-zod-form';
 
 interface Properties {
   className?: string;
@@ -29,8 +29,7 @@ export default function NewsletterForm({ className }: Readonly<Properties>) {
   const schema = z.object({
     email: z.email({ error: t('validations.email') }),
   });
-  const form = useForm({
-    resolver: zodResolver(schema),
+  const form = useZodForm(schema, {
     defaultValues: {
       email: '',
     },
