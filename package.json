@@ -127,7 +127,7 @@
     "picocolors": "^1.1.1",
     "prettier": "^3.8.2",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "react-email": "^5.2.10",
+    "react-email": "^6.0.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2",
