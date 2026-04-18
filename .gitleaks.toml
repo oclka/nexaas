@@ -5,6 +5,7 @@ useDefault = true
 description = "Allowlist for test/CI environment variables"
 paths = [
   '''^\.env\.example$''',
+  '''^\.env\.ci$''',
 ]
 regexes = [
   '''APP_SECRET=dm6710T5HURxvZag3b93c2bPMUybcRZs6P4IOk7LFkkc5DHZAxWUVlHOovcdN7GD''',
